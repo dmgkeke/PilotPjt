@@ -2,41 +2,63 @@ buildscript {
 	repositories {
 		mavenCentral()
 	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+		classpath("org.hsqldb:hsqldb:2.3.4")
+		classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
+	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
 
 version = '0.0.1'
+
+jar {
+	baseName = 'api-server'
+	version = version
+	
+	manifest {
+		attributes 'Implementation-Title':'API Server',
+				   'Implementation-Version':version
+	}
+}
+
+flyway {
+	url = 'jdbc:hsqldb:file:db/file/hsqldb'
+	user = 'sa'
+	password = 'sa'
+}
 
 repositories {
 	mavenCentral()
 }
 
-ext {
-	slf4jVersion = '1.7.12'
-	logbackVersion = '1.1.3'
-}
+//ext {
+//	slf4jVersion = '1.7.12'
+//	logbackVersion = '1.1.3'
+//}
 
-List loggers = {
-	"org.slf4j:slf4j-api:$(slf4jVersion)",
-	"org.slf4j:jcl-over-slf4j:$(slf4jVersion)",
-	"org.slf4j:log4j-over-slf4j:$(slf4jVersion)",
-	"org.slf4j:jul-to-slf4j:$(slf4jVersion)",
-	"ch.qos.logback:logback-core:$(logbackVersion)",
-	"ch.qos.logback:logback-classic:$(logbackVersion)"
-}
+//List loggers = [
+//	"org.slf4j:slf4j-api:$(slf4jVersion)",
+//	"org.slf4j:jcl-over-slf4j:$(slf4jVersion)",
+//	"org.slf4j:log4j-over-slf4j:$(slf4jVersion)",
+//	"org.slf4j:jul-to-slf4j:$(slf4jVersion)",
+//	"ch.qos.logback:logback-core:$(logbackVersion)",
+//	"ch.qos.logback:logback-classic:$(logbackVersion)"
+//]
 
-configurations {
-	all.collect { configration ->
-		configration.exclude group: 'commons-logging', module: 'commons-logging'
-		configration.exclude group: 'log4j', module: 'log4j'
-		configration.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
-		configration.exclude group: 'org.slf4j', module: 'slf4j-jcl'
-		configration.exclude group: 'org.slf4j', module: 'slf4j-jdk14'
-	}
-}
+//configurations {
+//	all.collect { configration ->
+//		configration.exclude group: 'commons-logging', module: 'commons-logging'
+//		configration.exclude group: 'log4j', module: 'log4j'
+//		configration.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+//		configration.exclude group: 'org.slf4j', module: 'slf4j-jcl'
+//		configration.exclude group: 'org.slf4j', module: 'slf4j-jdk14'
+//	}
+//}
 
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web:1.4.1.RELEASE")
@@ -54,7 +76,7 @@ dependencies {
 	//flyway(db-migration)
 	compile("org.flywaydb:flyway-core:3.2.1")
 	
-	compile loggers
+	//compile loggers
 	
 	testCompile("junit:junit:4.12")
 	testCompile("org.mockito:mockito-core:2.2.10")
