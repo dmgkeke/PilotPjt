@@ -1,4 +1,4 @@
 .gradle/
 .settings/gradle/
-db/
+db/file
 bin/
