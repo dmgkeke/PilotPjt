@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.plt.config.ServerConfig;
@@ -16,7 +17,10 @@ import com.plt.config.ServerConfig;
 @Component("hsqlDataSource")
 public class HsqlDataSource implements DataSource {
 	
-	private static final String URL = ServerConfig.DATABASE_URL;
+//	private static final String URL = ServerConfig.DATABASE_URL;
+	
+	@Value("${spring.datasource.url}")
+	private String url;
 	
 	private PrintWriter logWriter;
 	private int loginTimeOut;
@@ -66,12 +70,12 @@ public class HsqlDataSource implements DataSource {
 	@Override
 	public Connection getConnection() throws SQLException {
 		// TODO Auto-generated method stub
-		return DriverManager.getConnection(URL);
+		return DriverManager.getConnection(url);
 	}
 
 	@Override
 	public Connection getConnection(String username, String password) throws SQLException {
 		// TODO Auto-generated method stub
-		return DriverManager.getConnection(URL, username, password);
+		return DriverManager.getConnection(url, username, password);
 	}
 }
