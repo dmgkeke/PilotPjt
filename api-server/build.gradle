@@ -4,15 +4,15 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
-		classpath("org.hsqldb:hsqldb:2.3.1")
-		classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
+		//classpath("org.hsqldb:hsqldb:2.3.1")
+		//classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
-apply plugin: 'org.flywaydb.flyway'
+//apply plugin: 'org.flywaydb.flyway'
 
 version = '0.0.1'
 
@@ -26,11 +26,11 @@ jar {
 	}
 }
 
-flyway {
-	url = 'jdbc:hsqldb:file:db/file/hsqldb'
-	user = 'sa'
-	password = 'sa'
-}
+//flyway {
+//	url = 'jdbc:hsqldb:file:db/file/hsqldb'
+//	user = 'sa'
+//	password = 'sa'
+//}
 
 repositories {
 	mavenCentral()
@@ -50,7 +50,7 @@ List loggers = [
     "ch.qos.logback:logback-classic:${logbackVersion}"
 ]
 
-// commons-logging, log4j, jul 의존성 제거
+// commons-logging, log4j, jul �쓽議댁꽦 �젣嫄�
 configurations {
     all.collect { configuration ->
         configuration.exclude group: 'commons-logging', module: 'commons-logging'
@@ -71,11 +71,11 @@ dependencies {
 	
 	//db
 	compile("org.springframework:spring-jdbc:4.3.3.RELEASE")
-	compile("org.hsqldb:hsqldb:2.3.1")
-	//compile("org.mariadb.jdbc:mariadb-java-client:1.5.4")
+	//compile("org.hsqldb:hsqldb:2.3.1")
+	compile("org.mariadb.jdbc:mariadb-java-client:1.5.4")
 	
 	//flyway(db-migration)
-	compile("org.flywaydb:flyway-core:3.2.1")
+	//compile("org.flywaydb:flyway-core:3.2.1")
 	
 	// loggers
     compile loggers

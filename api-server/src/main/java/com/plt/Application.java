@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableAutoConfiguration
 @EntityScan("com.plt.rest.vo")
 @EnableJpaRepositories("com.plt.rest.service.dao")
-@ComponentScan({"com.plt.rest", "com.plt.db.hsql"})
+@ComponentScan({"com.plt.rest"})
 @PropertySource("application.properties")
 public class Application {
 	public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package com.plt.rest.service;
 
-public interface UserService {
+import com.plt.rest.vo.User;
 
+public interface UserService {
+	User test();
 }

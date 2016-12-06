@@ -3,7 +3,7 @@ package com.plt.rest.vo;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="User")
+@Entity(name="user")
 public class User {
 	
 	@Id
