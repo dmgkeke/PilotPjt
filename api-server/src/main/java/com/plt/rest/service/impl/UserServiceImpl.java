@@ -13,8 +13,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public User test(){
-		return userRepository.findOne("1");
+	public User test(String id){
+		return userRepository.findOne(id);
 	}
 	
 }
