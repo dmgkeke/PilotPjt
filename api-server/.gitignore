@@ -3,3 +3,7 @@
 db/file
 bin/
 build/
+gradle/
+gradlew*
+api-server.iml
+.idea/
